@@ -1,0 +1,8 @@
+{
+  "$schema": "https://openapi.vercel.sh/vercel.json",
+  "buildCommand": "node -e \"const fs=require('fs');fs.mkdirSync('dist/src',{recursive:true});fs.copyFileSync('index.html','dist/index.html');fs.copyFileSync('src/main.js','dist/src/main.js')\"",
+  "outputDirectory": "dist",
+  "installCommand": "echo \"No dependencies to install\"",
+  "cleanUrls": true,
+  "trailingSlash": false
+}
