@@ -1,0 +1,9 @@
+{
+  "name": "margo-sites-aave",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Одностраничный сайт услуги «Создание сайтов на заказ» — вариант в стиле Aave (светлая/тёмная тема)",
+  "scripts": {
+    "dev": "node server.js"
+  }
+}

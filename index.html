@@ -1,0 +1,419 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Margo — сайты на заказ</title>
+<meta name="description" content="Создание сайтов на заказ: лендинги, корпоративные сайты и магазины. Дизайн, разработка и запуск под ключ.">
+<style>
+/* Style reference: aave.com — light warm grays, soft purple accent, rounded panels, pill buttons.
+   Typography: Aave uses custom "Aave Repro"; closest available pairing is Inter/system with tight tracking. */
+:root{
+  --font-sans: "Inter Variable", Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  --font-mono: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+
+  --bg-1: #ffffff;
+  --bg-2: #fafaf9;
+  --bg-3: #f7f6f6;
+  --bg-panel: #fbfbfb;
+  --border-1: #f1f1f0;
+  --border-2: #e1e1e0;
+  --fg-1: #211d1d;
+  --fg-2: #636161;
+  --fg-3: #8f8e8e;
+  --purple-1: #9896ff;
+  --purple-3: #978eff;
+  --rich-purple: #8075ff;
+  --purple-8: #e5e5ff;
+  --shadow-soft: 0 1px 2px rgba(38,34,40,.04), 0 8px 24px rgba(38,34,40,.05);
+
+  --duration-snappy: 350ms;
+  --ease-snappy: cubic-bezier(0.175, 0.885, 0.32, 1.1);
+  --radius-lg: 24px;
+  --radius-md: 16px;
+}
+[data-theme="dark"]{
+  --bg-1: #19191b;
+  --bg-2: #1e1e21;
+  --bg-3: #232326;
+  --bg-panel: #212124;
+  --border-1: #2c2c30;
+  --border-2: #3a3a3f;
+  --fg-1: #f4f3f3;
+  --fg-2: #b5b3b3;
+  --fg-3: #8a8888;
+  --purple-8: #35334d;
+  --shadow-soft: 0 1px 2px rgba(0,0,0,.3), 0 8px 24px rgba(0,0,0,.35);
+}
+*, *:before, *:after{ box-sizing: border-box; margin: 0; padding: 0; }
+html{
+  scroll-behavior: smooth;
+  scroll-padding-top: 6rem;
+  background: var(--bg-1);
+  transition: background-color .4s ease, color .4s ease;
+}
+body{
+  font: 16px / 1.6 var(--font-sans);
+  color: var(--fg-1);
+  background: var(--bg-1);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  overflow-x: hidden;
+  transition: background-color .4s ease, color .4s ease;
+}
+a{ color: inherit; text-decoration: none; }
+a:hover{ color: var(--rich-purple); }
+:focus-visible{ outline: 2px solid var(--purple-1); outline-offset: 3px; border-radius: 4px; }
+.wrap{ max-width: 1080px; margin: 0 auto; padding: 0 24px; }
+
+/* ---------- header ---------- */
+header{
+  position: sticky; top: 0; z-index: 10;
+  background: color-mix(in srgb, var(--bg-1) 82%, transparent);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border-bottom: 1px solid var(--border-1);
+  transition: background-color .4s ease, border-color .4s ease;
+}
+.header-inner{
+  display: flex; align-items: center; justify-content: space-between;
+  gap: 1rem; height: 68px;
+}
+.wordmark{ font-weight: 700; letter-spacing: -.02em; font-size: 1.05rem; display: flex; align-items: center; gap: .55rem; }
+.wordmark .logo{
+  width: 26px; height: 26px; border-radius: 8px;
+  background: linear-gradient(135deg, var(--purple-1), var(--rich-purple));
+  display: inline-block; flex: none;
+}
+nav{ display: flex; align-items: center; gap: .35rem; }
+nav a.navlink{
+  padding: .5rem .9rem; border-radius: 100px;
+  font-size: .92rem; color: var(--fg-2);
+  transition: color var(--duration-snappy) var(--ease-snappy), background-color var(--duration-snappy) var(--ease-snappy);
+}
+nav a.navlink:hover{ color: var(--fg-1); background: var(--bg-3); }
+.icon-btn{
+  width: 40px; height: 40px; border-radius: 50%;
+  border: 1px solid var(--border-2); background: var(--bg-2);
+  color: var(--fg-2); cursor: pointer; font-size: 1rem; line-height: 1;
+  display: inline-flex; align-items: center; justify-content: center;
+  transition: all var(--duration-snappy) var(--ease-snappy);
+}
+.icon-btn:hover{ color: var(--fg-1); border-color: var(--fg-3); transform: translateY(-1px); }
+
+/* ---------- hero ---------- */
+.hero{ padding: 96px 0 72px; text-align: center; }
+.badge{
+  display: inline-flex; align-items: center; gap: .5rem;
+  background: var(--bg-3); border: 1px solid var(--border-1);
+  border-radius: 100px; padding: .45rem 1rem;
+  font-size: .85rem; color: var(--fg-2); margin-bottom: 1.75rem;
+}
+.badge .dot{ width: 8px; height: 8px; border-radius: 50%; background: #28d358; box-shadow: 0 0 0 3px rgba(40,211,88,.18); }
+.hero h1{
+  font-size: clamp(2.4rem, 6vw, 4rem);
+  line-height: 1.05; letter-spacing: -.035em; font-weight: 700;
+  max-width: 20ch; margin: 0 auto 1.5rem; text-wrap: balance;
+}
+.hero h1 .accent{ color: var(--rich-purple); }
+.hero p.lead{
+  font-size: 1.15rem; color: var(--fg-2); max-width: 56ch;
+  margin: 0 auto 2.25rem;
+}
+.cta-row{ display: flex; gap: .75rem; justify-content: center; flex-wrap: wrap; }
+.btn{
+  display: inline-flex; align-items: center; gap: .5rem;
+  border-radius: 100px; padding: .85rem 1.6rem;
+  font-weight: 600; font-size: .95rem; cursor: pointer; border: 1px solid transparent;
+  transition: all var(--duration-snappy) var(--ease-snappy);
+}
+.btn-primary{
+  background: linear-gradient(135deg, var(--purple-1), var(--rich-purple));
+  color: #fff; box-shadow: 0 8px 24px rgba(128,117,255,.35);
+}
+.btn-primary:hover{ transform: translateY(-2px); box-shadow: 0 12px 32px rgba(128,117,255,.45); color: #fff; }
+.btn-ghost{
+  background: var(--bg-2); border-color: var(--border-2); color: var(--fg-1);
+}
+.btn-ghost:hover{ border-color: var(--fg-3); color: var(--fg-1); transform: translateY(-2px); }
+
+/* ---------- sections ---------- */
+section{ padding: 72px 0; }
+section.tinted{ background: var(--bg-2); border-block: 1px solid var(--border-1); }
+.section-head{ text-align: center; max-width: 52ch; margin: 0 auto 3rem; }
+.section-head h2{ font-size: clamp(1.6rem, 3.5vw, 2.25rem); letter-spacing: -.025em; line-height: 1.15; margin-bottom: .75rem; text-wrap: balance; }
+.section-head p{ color: var(--fg-2); }
+
+/* services grid */
+.grid{ display: grid; grid-template-columns: repeat(2, 1fr); gap: 1.25rem; }
+.card{
+  background: var(--bg-panel); border: 1px solid var(--border-1);
+  border-radius: var(--radius-lg); padding: 1.75rem;
+  box-shadow: var(--shadow-soft);
+  transition: transform var(--duration-snappy) var(--ease-snappy), border-color var(--duration-snappy) var(--ease-snappy);
+}
+.card:hover{ transform: translateY(-4px); border-color: var(--border-2); }
+.card .glyph{
+  width: 44px; height: 44px; border-radius: 12px;
+  background: var(--purple-8); color: var(--rich-purple);
+  display: flex; align-items: center; justify-content: center;
+  margin-bottom: 1.1rem;
+}
+.card h3{ font-size: 1.1rem; letter-spacing: -.015em; margin-bottom: .4rem; }
+.card p{ color: var(--fg-2); font-size: .95rem; }
+
+/* process */
+.steps{ display: grid; grid-template-columns: repeat(5, 1fr); gap: .75rem; counter-reset: step; }
+.step{
+  background: var(--bg-panel); border: 1px solid var(--border-1);
+  border-radius: var(--radius-md); padding: 1.25rem 1.1rem;
+  counter-increment: step; position: relative;
+  transition: transform var(--duration-snappy) var(--ease-snappy), border-color var(--duration-snappy) var(--ease-snappy);
+}
+.step:hover{ transform: translateY(-4px); border-color: var(--purple-1); }
+.step::before{
+  content: counter(step, decimal-leading-zero);
+  font-family: var(--font-mono); font-size: .8rem; color: var(--rich-purple);
+  display: block; margin-bottom: .6rem;
+}
+.step strong{ display: block; font-size: .95rem; margin-bottom: .3rem; letter-spacing: -.01em; }
+.step span{ font-size: .83rem; color: var(--fg-2); line-height: 1.5; display: block; }
+
+/* pricing */
+.plans{ display: grid; grid-template-columns: repeat(2, 1fr); gap: 1.25rem; }
+.plan{ display: flex; flex-direction: column; }
+.plan .amount{
+  font-size: 1.5rem; font-weight: 700; letter-spacing: -.02em;
+  margin: .35rem 0 .9rem;
+}
+.plan .amount small{ font-size: .85rem; font-weight: 500; color: var(--fg-3); letter-spacing: 0; }
+.plan ul{ list-style: none; margin: 0 0 1.5rem; display: grid; gap: .5rem; }
+.plan li{ font-size: .9rem; color: var(--fg-2); padding-left: 1.4rem; position: relative; }
+.plan li::before{
+  content: ""; position: absolute; left: 0; top: .42em;
+  width: 12px; height: 12px; border-radius: 50%;
+  background: var(--purple-8);
+  box-shadow: inset 0 0 0 3.5px var(--rich-purple);
+}
+.plan .btn{ margin-top: auto; justify-content: center; }
+.plan-note{ text-align: center; color: var(--fg-3); font-size: .85rem; margin-top: 1.75rem; }
+
+/* about */
+.about-panel{
+  background: linear-gradient(135deg, var(--purple-8), var(--bg-panel) 65%);
+  border: 1px solid var(--border-1); border-radius: var(--radius-lg);
+  padding: 3rem; box-shadow: var(--shadow-soft);
+}
+[data-theme="dark"] .about-panel{ background: linear-gradient(135deg, #2a2740, var(--bg-panel) 65%); }
+.about-panel p{ color: var(--fg-2); max-width: 62ch; margin-bottom: 1rem; }
+.about-panel p:last-child{ margin-bottom: 0; }
+
+/* contacts */
+.contact-card{
+  max-width: 640px; margin: 0 auto; text-align: center;
+  background: var(--bg-panel); border: 1px solid var(--border-1);
+  border-radius: var(--radius-lg); padding: 3rem 2rem;
+  box-shadow: var(--shadow-soft);
+}
+.contact-card p{ color: var(--fg-2); margin-bottom: 1.5rem; }
+#contact-links{ font-size: 1.1rem; font-weight: 600; display: grid; gap: .4rem; margin-bottom: 0; }
+#contact-links a{ color: var(--rich-purple); }
+
+/* footer */
+footer{ border-top: 1px solid var(--border-1); padding: 2rem 0; }
+.footer-inner{
+  display: flex; justify-content: space-between; align-items: center; gap: 1rem; flex-wrap: wrap;
+  font-size: .85rem; color: var(--fg-3);
+}
+.theme-toggle{
+  display: inline-flex; align-items: center; gap: .5rem;
+  background: var(--bg-3); border: 1px solid var(--border-2);
+  border-radius: 100px; padding: .5rem 1rem;
+  font: inherit; font-size: .85rem; color: var(--fg-2); cursor: pointer;
+  transition: all var(--duration-snappy) var(--ease-snappy);
+}
+.theme-toggle:hover{ color: var(--fg-1); border-color: var(--fg-3); }
+
+@media (max-width: 900px){
+  .steps{ grid-template-columns: repeat(2, 1fr); }
+  .step:last-child{ grid-column: 1 / -1; }
+}
+@media (max-width: 640px){
+  .grid, .plans{ grid-template-columns: 1fr; }
+  .hero{ padding: 64px 0 56px; }
+  section{ padding: 56px 0; }
+  .about-panel{ padding: 2rem 1.5rem; }
+  .header-inner{ flex-wrap: wrap; height: auto; padding: .7rem 0; row-gap: .5rem; }
+  nav{ width: 100%; justify-content: space-between; }
+  nav a.navlink{ padding: .5rem .6rem; }
+}
+@media (prefers-reduced-motion: reduce){
+  *{ animation: none !important; transition: none !important; }
+  html{ scroll-behavior: auto; }
+}
+</style>
+</head>
+<body>
+<header>
+  <div class="wrap header-inner">
+    <a class="wordmark" href="#top"><span class="logo" aria-hidden="true"></span>Margo</a>
+    <nav>
+      <a class="navlink" href="#services">Услуги</a>
+      <a class="navlink" href="#process">Процесс</a>
+      <a class="navlink" href="#pricing">Цены</a>
+      <a class="navlink" href="#contacts">Контакты</a>
+      <button class="icon-btn" id="theme-toggle" type="button" aria-label="Переключить тему">◐</button>
+    </nav>
+  </div>
+</header>
+
+<main id="top">
+  <div class="wrap">
+    <div class="hero">
+      <p class="badge"><span class="dot" aria-hidden="true"></span>Открыта для новых проектов</p>
+      <h1>Сайты на заказ, которые <span class="accent">работают на бизнес</span></h1>
+      <p class="lead">Лендинги, корпоративные сайты и небольшие магазины. Беру проект от первой идеи до запуска: структура, дизайн, код и аналитика. Без посредников — вы общаетесь напрямую с тем, кто делает.</p>
+      <div class="cta-row">
+        <a class="btn btn-primary" href="#contacts">Обсудить проект</a>
+        <a class="btn btn-ghost" href="#services">Смотреть услуги</a>
+      </div>
+    </div>
+  </div>
+
+  <section id="services">
+    <div class="wrap">
+      <div class="section-head">
+        <h2>Что я делаю</h2>
+        <p>Четыре направления — от быстрого лендинга до полноценного магазина.</p>
+      </div>
+      <div class="grid">
+        <div class="card">
+          <div class="glyph" aria-hidden="true">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><rect x="3" y="4" width="18" height="14" rx="2"/><path d="M3 9h18"/></svg>
+          </div>
+          <h3>Лендинги</h3>
+          <p>Одностраничные сайты для услуг и запусков продукта. Фокус на одном действии: заявка, звонок, покупка.</p>
+        </div>
+        <div class="card">
+          <div class="glyph" aria-hidden="true">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><rect x="3" y="3" width="8" height="8" rx="2"/><rect x="13" y="3" width="8" height="8" rx="2"/><rect x="3" y="13" width="8" height="8" rx="2"/><rect x="13" y="13" width="8" height="8" rx="2"/></svg>
+          </div>
+          <h3>Корпоративные сайты</h3>
+          <p>Многостраничные сайты компаний: услуги, портфолио, команда, блог. Удобно редактировать без программиста.</p>
+        </div>
+        <div class="card">
+          <div class="glyph" aria-hidden="true">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="9" cy="20" r="1.5"/><circle cx="18" cy="20" r="1.5"/><path d="M2 3h3l3 12h10l3-8H7"/></svg>
+          </div>
+          <h3>Интернет-магазины</h3>
+          <p>Небольшие магазины с каталогом, корзиной и приёмом платежей. Каталог и заказы — в понятной админке.</p>
+        </div>
+        <div class="card">
+          <div class="glyph" aria-hidden="true">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M21 12a9 9 0 1 1-3-6.7"/><path d="M21 3v6h-6"/></svg>
+          </div>
+          <h3>Редизайн и доработка</h3>
+          <p>Обновлю устаревший сайт: ускорю, приведу в порядок мобильную версию, повышу конверсию страниц.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="tinted" id="process">
+    <div class="wrap">
+      <div class="section-head">
+        <h2>Как строится работа</h2>
+        <p>Пять понятных шагов — вы всегда знаете, на чём мы остановились.</p>
+      </div>
+      <div class="steps">
+        <div class="step"><strong>Знакомство</strong><span>Созвон или переписка: задача, цели, ожидания. Фиксирую смету и сроки.</span></div>
+        <div class="step"><strong>Структура</strong><span>Прототип: какие страницы и блоки нужны, что говорит посетителю на каждом шаге.</span></div>
+        <div class="step"><strong>Дизайн</strong><span>Макеты в выбранном стиле, правки — пока не скажете «да».</span></div>
+        <div class="step"><strong>Разработка</strong><span>Вёрстка и код: адаптив, скорость, базовое SEO, формы заявок.</span></div>
+        <div class="step"><strong>Запуск</strong><span>Домен, хостинг, аналитика, проверка по чек-листу и обучение управлению.</span></div>
+      </div>
+    </div>
+  </section>
+
+  <section id="pricing">
+    <div class="wrap">
+      <div class="section-head">
+        <h2>Цены</h2>
+        <p>Фиксирую стоимость до старта работ — без сюрпризов в конце.</p>
+      </div>
+      <div class="plans">
+        <div class="card plan">
+          <h3>Лендинг</h3>
+          <div class="amount">от 30 000 ₽</div>
+          <ul>
+            <li>Одна страница, дизайн + вёрстка</li>
+            <li>Формы заявок и аналитика</li>
+            <li>Адаптив под телефоны</li>
+          </ul>
+          <a class="btn btn-ghost" href="#contacts">Обсудить лендинг</a>
+        </div>
+        <div class="card plan">
+          <h3>Сайт компании</h3>
+          <div class="amount">от 70 000 ₽</div>
+          <ul>
+            <li>До 10 страниц</li>
+            <li>Админка для редактирования контента</li>
+            <li>Базовое SEO и скорость</li>
+          </ul>
+          <a class="btn btn-ghost" href="#contacts">Обсудить сайт</a>
+        </div>
+        <div class="card plan">
+          <h3>Интернет-магазин</h3>
+          <div class="amount">от 120 000 ₽</div>
+          <ul>
+            <li>Каталог, корзина, оплата</li>
+            <li>Уведомления о заказах</li>
+            <li>Обучение работе с админкой</li>
+          </ul>
+          <a class="btn btn-ghost" href="#contacts">Обсудить магазин</a>
+        </div>
+        <div class="card plan">
+          <h3>Поддержка</h3>
+          <div class="amount">от 5 000 ₽ <small>/ мес</small></div>
+          <ul>
+            <li>Обновления и мелкие доработки</li>
+            <li>Резервные копии</li>
+            <li>Мониторинг работы сайта</li>
+          </ul>
+          <a class="btn btn-ghost" href="#contacts">Обсудить поддержку</a>
+        </div>
+      </div>
+      <p class="plan-note">Точную стоимость называю после короткого брифа — обычно в течение дня. Предоплата 30%, остальное — после приёмки.</p>
+    </div>
+  </section>
+
+  <section class="tinted" id="about">
+    <div class="wrap">
+      <div class="about-panel">
+        <h2 style="letter-spacing:-.02em;margin-bottom:1rem;">Почему со мной спокойно</h2>
+        <p>Я работаю одна и отвечаю за результат лично. Не беру больше двух проектов одновременно — ваш сайт не встаёт в очередь. Все договорённости фиксирую письменно: объём, сроки, стоимость. Если что-то идёт не так, вы узнаете об этом от меня первым.</p>
+        <p>По умолчанию сайт остаётся вашим полностью: исходники, доступы, домен — всё передаю и объясняю, как этим пользоваться.</p>
+      </div>
+    </div>
+  </section>
+
+  <section id="contacts">
+    <div class="wrap">
+      <div class="contact-card">
+        <h2 style="letter-spacing:-.02em;margin-bottom:.75rem;">Обсудим ваш проект?</h2>
+        <p>Расскажите о задаче — отвечу в течение дня.</p>
+        <p id="contact-links"></p>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <div class="wrap footer-inner">
+      <span>© <span id="year">2026</span> Margo. Сайты на заказ.</span>
+      <button class="theme-toggle" id="theme-toggle-footer" type="button">Переключить тему</button>
+    </div>
+  </footer>
+</main>
+<script type="module" src="./src/main.js"></script>
+</body>
+</html>
